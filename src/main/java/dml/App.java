@@ -32,11 +32,38 @@ public class App extends BaseTest{
         System.out.println(driver.findElement(By.id("android:id/title")).isDisplayed());
 	}
 
+    public static void Scroll() {
+        driver.findElement(AppiumBy.accessibilityId("Views")).click();
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView2\"))"));
+    }
+
+
+
+
+
+    public static void SwipeDemoTest() throws MalformedURLException, InterruptedException
+	{
+
+		driver.findElement(AppiumBy.accessibilityId("Views")).click();
+		driver.findElement(AppiumBy.accessibilityId("Gallery")).click();
+		driver.findElement(By.xpath("//android.widget.TextView[@text='1. Photos']")).click();
+		WebElement firstImage = driver.findElement(By.xpath("(//android.widget.ImageView)[1]"));
+		System.out.println(driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).getAttribute("focusable"));
+
+		swipeAction(firstImage,"left");	
+		System.out.println(driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).getAttribute("focusable"));
+
+	}
+
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         ConfigureAppium();
+        // Thread.sleep(2000);
         // AppiumTest();
-        LongPressGesture();
+        // LongPressGesture();
+        // Scroll();
+        SwipeDemoTest();
+
         Close();
     }
 }
